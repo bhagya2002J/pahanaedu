@@ -1,0 +1,13 @@
+com\mycompany\bhagya_backend\model\Order.class
+com\mycompany\bhagya_backend\JakartaRestConfiguration.class
+com\mycompany\bhagya_backend\resources\LoginResource.class
+com\mycompany\bhagya_backend\model\OrderItem.class
+com\mycompany\bhagya_backend\resources\CustomerResource.class
+com\mycompany\bhagya_backend\model\Customer.class
+com\mycompany\bhagya_backend\util\DBUtil.class
+com\mycompany\bhagya_backend\resources\ItemResource.class
+com\mycompany\bhagya_backend\resources\JakartaEE10Resource.class
+com\mycompany\bhagya_backend\model\Item.class
+com\mycompany\bhagya_backend\resources\OrderHistoryResource.class
+com\mycompany\bhagya_backend\resources\OrderResource.class
+com\mycompany\bhagya_backend\resources\CORSFilter.class
