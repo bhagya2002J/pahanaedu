@@ -2,40 +2,209 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cart</title>
+    <title>Cart - Pahana Edu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { font-family: Arial; background: #f9f9f9; }
-        .container { width: 700px; margin: 40px auto; background: #fff; padding: 28px; box-shadow: 0 2px 8px #ccc; border-radius: 8px; }
-        h2 { text-align: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background: #e1eefa; }
-        tr:nth-child(even) { background: #f0f8ff; }
-        .btn { background: #0077b6; color: #fff; border: none; border-radius: 4px; padding: 7px 16px; cursor: pointer; }
-        .btn-danger { background: #d90429; }
-        #bill { margin-top: 30px; background: #f0f0f0; padding: 18px; border-radius: 8px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #F1EFEC;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #123458;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(3, 3, 3, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #F1EFEC;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .user-info {
+            color: #F1EFEC;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 100px auto 40px;
+            background: #fff;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(3, 3, 3, 0.08);
+            border-radius: 15px;
+        }
+
+        h2 {
+            color: #123458;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        #customerInfo {
+            background: #F1EFEC;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #123458;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #D4C9BE;
+        }
+
+        th {
+            background: #123458;
+            color: #F1EFEC;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(212, 201, 190, 0.1);
+        }
+
+        tr:hover {
+            background: rgba(18, 52, 88, 0.05);
+        }
+
+        input[type=number] {
+            padding: 8px 12px;
+            border: 2px solid #D4C9BE;
+            border-radius: 8px;
+            width: 80px;
+        }
+
+        input[type=number]:focus {
+            border-color: #123458;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(18, 52, 88, 0.1);
+        }
+
+        .btn {
+            background: #123458;
+            color: #F1EFEC;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(18, 52, 88, 0.2);
+        }
+
+        .btn-danger {
+            background: #D4C9BE;
+            color: #123458;
+        }
+
+        #cartTotal {
+            color: #123458;
+            margin: 20px 0;
+            font-size: 20px;
+        }
+
+        #bill {
+            margin-top: 30px;
+            background: #F1EFEC;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #123458;
+        }
+
+        #bill table {
+            margin: 15px 0;
+        }
+
+        #bill h3 {
+            color: #123458;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 1rem;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Cart</h2>
-    <div id="customerInfo"></div>
-    <table>
-        <thead>
-            <tr>
-                <th>Item Name</th>
-                <th>Price per Unit</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="cartTable"></tbody>
-    </table>
-    <h3 id="cartTotal"></h3>
-    <button class="btn" onclick="checkout()">Checkout</button>
-    <div id="bill" style="display:none;"></div>
-</div>
+    <header class="header">
+        <a href="main.jsp" class="logo">Pahana Edu</a>
+        
+    </header>
+
+    <div class="container">
+        <h2>Shopping Cart</h2>
+        <div id="customerInfo"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Price per Unit</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cartTable"></tbody>
+        </table>
+        <h3 id="cartTotal"></h3>
+        <button class="btn" onclick="checkout()">
+            <i class="fas fa-shopping-cart"></i> Checkout
+        </button>
+        <div id="bill" style="display:none;"></div>
+    </div>
+
+<!-- Keep your existing JavaScript code exactly as is -->
 <script>
 const API_ORDER = "http://localhost:8080/bhagya_backend/resources/orders/submit";
 let cart = JSON.parse(localStorage.getItem('cart') || "[]");
@@ -53,7 +222,7 @@ function escapeHTML(str) {
 function renderCart() {
     if (customer) {
         document.getElementById('customerInfo').innerHTML =
-            `<b>Customer:</b> ${escapeHTML(customer.name)} <b>Mobile:</b> ${escapeHTML(customer.contact)}`;
+            `<i class="fas fa-user"></i> <b>Customer:</b> ${escapeHTML(customer.name)} <b>Mobile:</b> ${escapeHTML(customer.contact)}`;
     }
     let rows = '';
     let total = 0;
@@ -62,20 +231,24 @@ function renderCart() {
         total += subtotal;
         rows += `<tr>
             <td>${escapeHTML(i.name)}</td>
-            <td>${i.price.toFixed(2)}</td>
+            <td>Rs. ${i.price.toFixed(2)}</td>
             <td>
                 <input type="number" min="1" max="${i.availableQty}" value="${i.quantity}" onchange="updateQty(${idx}, this.value)">
             </td>
-            <td>${subtotal.toFixed(2)}</td>
+            <td>Rs. ${subtotal.toFixed(2)}</td>
             <td>
-                <button class="btn btn-danger" onclick="removeFromCart(${idx})">Remove</button>
+                <button class="btn btn-danger" onclick="removeFromCart(${idx})">
+                    <i class="fas fa-trash"></i> Remove
+                </button>
             </td>
         </tr>`;
     });
-    document.getElementById('cartTable').innerHTML = rows || "<tr><td colspan='5'>Cart is empty</td></tr>";
-    document.getElementById('cartTotal').innerText = "Total: Rs. " + total.toFixed(2);
+    document.getElementById('cartTable').innerHTML = rows || 
+        `<tr><td colspan='5' style="text-align: center; padding: 20px;">Cart is empty</td></tr>`;
+    document.getElementById('cartTotal').innerText = "Total Amount: Rs. " + total.toFixed(2);
 }
 
+// Keep all other functions exactly as they are
 function updateQty(idx, val) {
     val = parseInt(val);
     if (val < 1 || val > cart[idx].availableQty) {
@@ -111,12 +284,15 @@ function checkout() {
 }
 
 function printBill(order) {
-    let html = `<h3>Order Bill</h3>
+    let html = `<h3><i class="fas fa-receipt"></i> Order Bill</h3>
         <b>Customer Name:</b> ${escapeHTML(order.customer.name)}<br>
         <b>Mobile:</b> ${escapeHTML(order.customer.contact)}<br>
         <table style="width:100%;margin-top:12px;">
             <tr>
-                <th>Item Name</th><th>Price</th><th>Quantity</th><th>Subtotal</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
             </tr>`;
     let total = 0;
     order.items.forEach(i => {
@@ -124,14 +300,13 @@ function printBill(order) {
         total += subtotal;
         html += `<tr>
             <td>${escapeHTML(i.name)}</td>
-            <td>${i.price.toFixed(2)}</td>
+            <td>Rs. ${i.price.toFixed(2)}</td>
             <td>${i.quantity}</td>
-            <td>${subtotal.toFixed(2)}</td>
+            <td>Rs. ${subtotal.toFixed(2)}</td>
         </tr>`;
     });
     html += `</table>
-        <h3>Total: Rs. ${total.toFixed(2)}</h3>
-       `;
+        <h3>Total Amount: Rs. ${total.toFixed(2)}</h3>`;
     document.getElementById('bill').innerHTML = html;
     document.getElementById('bill').style.display = "";
 }
